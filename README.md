@@ -6,6 +6,13 @@ Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
 
 VS Code
 node -v
-
 npm install -g http-server
-http-seerver
+http-server
+
+Git
+git --version
+git init
+git status
+git add README.md
+git log
+git commit -m "Update Readme.md"
