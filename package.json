@@ -4,7 +4,9 @@
   "description": "client side nodejs development",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server",
+    "dev":"webpack"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/csutorasbalazs/NodeJS/issues"
   },
-  "homepage": "https://github.com/csutorasbalazs/NodeJS#readme"
+  "homepage": "https://github.com/csutorasbalazs/NodeJS#readme",
+  "dependencies": {
+    "http-server": "^0.12.3",
+    "jquery": "^3.6.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.31.2",
+    "webpack-cli": "^4.6.0"
+  }
 }
