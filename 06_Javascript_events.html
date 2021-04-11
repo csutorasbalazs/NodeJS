@@ -1,0 +1,102 @@
+<html>
+    <head></head>
+    <body>
+        <button type="button" id="myButton">Click me</button>
+
+        <a id="myLink" href="05_Javascript_functions.html">Link</a>
+
+        <form>
+            <button type="submit">Submit</button>
+        </form>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", onPageLoad);
+            
+            function onPageLoad() {
+                let theButton = document.getElementById("myButton");
+                theButton.addEventListener("click", handleButtonClick);
+                theButton.addEventListener("mouseover", mouseOverEvent);
+                theButton.addEventListener("mouseout", mouseOutEvent);
+
+                theButton.addEventListener("WORLD_ENDING_EVENT", onWorldEnd);
+
+
+                let theLink = document.getElementById("myLink");
+                theLink.addEventListener("click", handleLinkClick);
+
+
+                // The querySelector method searches for the form object that is in the HTML page.
+                let myForm = document.querySelector("form");
+                myForm.addEventListener("submit", onSubmit);
+            }
+            
+            function handleButtonClick() {
+                console.log("button clicked");
+                
+                let theButton = document.getElementById("myButton");
+                theButton.removeEventListener("click", handleButtonClick);
+
+                let custEvent = new CustomEvent("WORLD_ENDING_EVENT",
+                {
+                    detail: { message: "And I feel fine" }
+                });
+                theButton.dispatchEvent(custEvent);
+            }
+
+            function mouseOverEvent() {
+                console.log("mouseover");
+            }
+            
+            function mouseOutEvent() {
+                console.log("mouseout");
+            }
+
+            // Using preventDefault
+            // Some examples of preventing the browser from performing its normal functions are when using links or forms
+            function handleLinkClick (evt) {
+                // Once clicked, an event object is passed to the function containing information about the event that just occurred.
+                // One of the methods that this object possesses is the preventDefault method.
+                // It keeps the browser from going to the URL assigned to the link.
+                evt.preventDefault();
+                console.log(evt);
+                // displays the target. This is the object that dispatched the event. In your case, it’s the item that was clicked.
+                // The developer tools show the HTML of the target.
+                console.log(evt.target);
+            }
+
+            function onSubmit(evt) {
+                console.log("form submitted");
+                // This overrides the browser trying to submit the data and go to another HTML page by using the preventDefault method.
+                evt.preventDefault();
+            }
+
+            // Event Propagation
+            // Event propagation deals with how various objects in the browser are able to receive events.
+            function onContainerClick(evt) {
+                console.log("container clicked");
+                // the addition of the stopPropagation method after the div tag receives the event.
+                // This keeps the document and the window from receiving the event.
+
+                // When an event is called, the event object is sent to an event handler.
+                // You use this object to call the stopPropagation method .
+                // This prevents any of the other objects higher up in the chain from receiving the event, even if they have listeners for that event.
+                evt.stopPropagation();
+            }
+
+            // event capturing.
+            // This is the exact opposite of what you have been doing with bubbling, where the browser starts at the top of the document and works its way down to the target.
+            // To have the browser use this method of dealing with events, you need to tell the addEventListener method to use capturing and not bubbling.
+            // myButton.addEventListener("click", onButtonClick, true);
+
+            // Custom events
+            function onWorldEnd(evt) {
+                console.log(evt);
+                // returns CustomEvent {isTrusted: false, detail: {...}, type: "WORLD_ENDING_EVENT", target: button#myButton, currentTarget: button#myButton, ...}
+                console.log(evt.type);
+                //returns WORLD_ENDING_EVENT
+                console.log(evt.detail);
+                //returns {message: "And I feel fine"}
+            }
+        </script>
+    </body>
+</html>
