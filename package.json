@@ -1,0 +1,19 @@
+{
+  "name": "firstnodejs",
+  "version": "1.0.0",
+  "description": "client side nodejs development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csutorasbalazs/NodeJS.git"
+  },
+  "author": "BalazsCsutoras",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/csutorasbalazs/NodeJS/issues"
+  },
+  "homepage": "https://github.com/csutorasbalazs/NodeJS#readme"
+}
