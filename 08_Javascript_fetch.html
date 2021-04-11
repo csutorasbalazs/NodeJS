@@ -1,0 +1,33 @@
+<html>
+    <head></head>
+    <body>
+        <button id="myButton" type="button">Get Json</button>
+
+        <script>
+            (function () {
+                var jsonResults;
+
+                function getData() {
+                    // The fetch method makes a call to a remote service, in your case a service that returns some JSON data.
+                    // When the results are returned to the browser, you do something called method chaining.
+                    // This is the ability to call one method directly from another.
+                    // The fetch method returns something called a promise.
+                    // A promise gives you the ability to wait for a value.
+                    fetch('https://jsonplaceholder.typicode.com/todos').then(response => response.json()).then(json => saveData(json));
+                }
+                
+                function saveData(json) {
+                    jsonResults = json;
+                    console.log(jsonResults);
+                }
+
+                document.addEventListener("DOMContentLoaded", onPageLoaded);
+
+                function onPageLoaded() {
+                    let button = document.querySelector("#myButton");
+                    button.addEventListener("click", getData);
+                }
+            })()
+        </script>
+    </body>
+</html>
