@@ -2,7 +2,115 @@
     <head></head>
     <body>
         <script>
-            
+            // function declaration , function definition , or function statement .
+
+            function addNumbers(num1, num2) {
+                return num1 + num2;
+            }
+            let result = addNumbers(2,3);
+            console.log(result);
+
+            // Here you create a constant variable and assign your function to it. Then you use the variable in the same way that you would call a function. In this case, the function does not have a name, making it an anonymous function. This is called a function expression .
+            const addNumbers2 = function(num1, num2) {
+                return num1+ num2
+            };
+            addNumbers2(2,3);
+
+            // arrow functions
+            // create a constant variable just as before.
+            // You lose the function keyword and use what is sometimes called a fat arrow: =>. The curly braces remain.
+            // dropped the return keyword. When using an arrow function, if the body of your function is only one line, JavaScript will use what is called an implicit return.
+            const arrowFun1 = (num1, num2) => { num1 + num2 };
+
+            // If there is only one argument, you do not need to put it in parentheses.
+            const arrowFun2 = num1 => num1 * 2;
+
+            // without any arguments to pass over, you can have an empty set of parentheses or use an underscore.
+            const arrowFun3 = _ => 2;
+            const arrowFun4 = () => 2;
+
+            // Normally, when using functions the code block goes between curly backets.
+            // This causes a problem when trying to return an object literal using an arrow function.
+            // The reason for this is that the interpreter does not know that you are trying to return an object.
+            // The way to fix this is to use parentheses on the outside and create the object literal on the inside.
+            const arrowFun5 = () => ({firstName:Paul});
+
+
+            // Execution context
+
+            // the keyword this is tied to the execution context.
+            // It will introduce what is called an IIFE (immediately invoked function expression).
+            // As the name suggests, it is a function that will execute immediately.
+
+            // One of the benefits to this is that variables that would otherwise end up in the global scope will now be in the scope of the IIFE.
+            // This is a technique used by many developers to not “pollute” the global scope.
+            // Functions and variables will never be part of the global scope.
+            // This also prevents overriding other functions or variables that may have the same name.
+            (function () {
+                var person = "Friend";
+                console.log(this); // returns Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, frames: Window, ...}
+                
+                console.log("Hello " + this.person); // returns undefined
+                console.log("Hello " + person); // returns Hello Friend
+            })();
+
+            //console.log("Hello = " + person); //returns reference error variable not defined.
+
+
+            // this
+            (function () {
+
+                // bind
+                var myObj = { person: "Friend" };
+                
+                function sayHello() { console.log("Hello " + this.person); }
+                
+                sayHello(); //returns Hello undefined
+
+                // Using bind , you set the object that you want to use as a starting point.
+                var tryAgain = sayHello.bind(myObj); //assigning the value of this to the object myObj
+                tryAgain(); // returns Hello Friend
+
+                // The call and apply methods are similar.
+                // The main difference is, not only can you define the execution context, but you can also pass information to the method that you want to execute.
+                function sayHello2(message)
+                {
+                    console.log(message, this.mainCharacter);
+                }
+                const characters = { mainCharacter: "Elliot" };
+                sayHello2.call(characters, "Hello ");
+                 // returns Hello Elliot
+
+
+                 // The apply method is very similar. The big difference is that the apply method expects an array.
+                 function sayHello3(firstName, secondName, thirdName)
+                 {
+                     console.log(this.message, firstName);
+                     //returns Hello Elliot
+                     console.log(this.message, secondName);
+                     //returns Hello Tyrell
+                     console.log(this.message, thirdName);
+                     //returns Hello Dominique
+                }
+                const show = { message: "Hello" };
+                sayHello3.apply(show, ["Elliot ", " Tyrell ", "Dominique "]);
+
+
+                // closures
+                // lexical scope
+                function sayHello4(firstName, lastName)
+                {
+                    let msg = "Greetings ";
+                    
+                    function intro() {
+                        return msg + firstName + " " + lastName;
+                    }
+                    console.log(intro());
+                    return intro();
+                }
+                sayHello4("Professor" , "Falken");
+                //returns "Greetings Professor Falken";
+            })()
         </script>
     </body>
 </html>

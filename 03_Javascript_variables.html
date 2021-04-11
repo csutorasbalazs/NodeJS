@@ -1,0 +1,76 @@
+<html>
+    <head></head>
+    <body>
+
+        <script lang="javascript">
+            // Using strict mode ensures that the browser will execute your code in the most efficient way possible and give you the most amount of feedback when errors occur.
+            // globally
+            'use strict';
+
+            var f1 = function () {
+                // function level
+                'use strict';
+
+                const constant_variable = 0;
+                //constant_variable = 1;
+
+                const obj = {};
+                obj.name = 'Vincent';
+
+                console.log(obj.name);
+                
+                var global_variable = 1;
+                let local_variable = 2;
+
+                console.log(global_variable);
+                console.log(local_variable);
+
+                for (let index = 0; index < 5; index++) {
+                    const element = 5;
+                    console.log(index);
+                }
+                //console.log(index);
+
+                for (var idx = 0; idx < 5; idx++) {
+                    const element = 5;
+                    console.log(idx);
+                }
+                // accessible here cause of using var instead of let
+                console.log(idx);
+            };
+
+            var f2 = function () {
+                let numberArray = [1,2,3,4,5,6,7,8,9];
+                
+                let oddNumbers = numberArray.filter((value, index, array) =>
+                {
+                    if(value % 2) {
+                        console.log(value);
+                        return value;
+                    }
+                });
+
+
+                let mappedValue = [1,2,3].map((currentValue, currentIndex, array) =>
+                {
+                    console.log(currentValue);
+                    console.log(currentIndex);
+                    console.log(array);
+
+                    return currentValue * 10;
+                });
+                console.log(mappedValue) //returns [10,20,30]
+
+
+                let reducedValue = [10,1,2,3,4,5,6,7,8,9].reduce((previousvalue, currentValue, currentindex, array) =>
+                {
+                    return previousvalue + currentValue;
+                });
+                console.log(reducedValue) //returns 55
+            }
+
+            f1();
+            f2();
+        </script>
+    </body>
+</html>
