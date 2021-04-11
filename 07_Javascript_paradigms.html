@@ -1,0 +1,45 @@
+<html>
+    <head></head>
+    <body>
+        <script>
+            class Robot {
+                constructor(name, type) {
+                    this.name = name;
+                    this.type = type;
+                    
+                    this.greeting = function() {
+
+                        console.count('greeting');
+
+                        return "I'm " + this.name + " I'm a " + this.type + ".";
+                    }
+                }
+            }
+
+            var r2d2 = new Robot("R2D2", "SW robot");
+            console.log(r2d2.greeting());
+
+            class BendingUnit extends Robot {
+                constructor(name, type) {
+                    super(name, type);
+                }
+            }
+
+            var _3cpo = new BendingUnit("3CPO", "SW robot");
+            console.log(_3cpo.greeting());
+            console.dir(_3cpo);
+            console.dirxml(_3cpo);
+
+            // The important difference here is that you explicitly group these items with a title and specify an end to the group.
+            let albums = {'first': 'Information Socieity', 'second': 'Hack', 'thrid': 'Peace and Love Inc.'};
+            console.group("Album List");
+            console.log('first:' , albums.first);
+            console.log('second:' , albums.second);
+            console.log('thrid:' , albums.third);
+            console.groupEnd();
+
+            console.table(albums);
+
+        </script>
+    </body>
+</html>
